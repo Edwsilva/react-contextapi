@@ -3,6 +3,7 @@ import React, { createContext, useState, type JSX } from "react";
 interface IUser {
   img: string;
   name: string;
+  header: string;
 }
 
 // Uma interface para representar todo contexto

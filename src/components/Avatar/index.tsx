@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../context";
+// import { AppContext } from "../../context";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export const Avatar = () => {
-  const context = useContext(AppContext);
+  const context = useAppContext();
 
+  if (!context.user) {
+    return <h1>Loading ...</h1>;
+  }
   return (
     <div
       style={{
