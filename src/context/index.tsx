@@ -28,6 +28,8 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
 
   // Função para mudar o estado. Ela precisa ser exportada
   function updateUser(user: IUser) {
+    console.log("updateUser called ", user);
+
     setData(user);
   }
   // O contexto criado será exportado como um provider

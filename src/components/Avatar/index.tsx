@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context";
 
 export const Avatar = () => {
+  const context = useContext(AppContext);
+
   return (
     <div
       style={{
@@ -13,11 +16,9 @@ export const Avatar = () => {
           height: 100,
           borderRadius: 50,
         }}
-        src={
-          "https://media.istockphoto.com/id/172735497/pt/foto/senior-cidad%C3%A3o.webp?a=1&s=612x612&w=0&k=20&c=FBEcUyMy4ltWZUIvLcaHbepZHdngz2S1f3XNjd1O6Cg="
-        }
+        src={context.user?.img}
       />
-      <p>Edwilson da Silva</p>
+      <p>{context.user?.name}</p>
     </div>
   );
 };
