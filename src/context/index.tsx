@@ -28,7 +28,9 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
   // Criando a variável que seré enviada para o contexto
   // const [data, setData] = useState<IUser>();
   // Persistindo os dados no browser do usuário
-  const [data, setData] = useLocalStorage<IUser>("user-logged");
+  // com react-use https://github.com/streamich/react-use/tree/master
+
+  const [data, setData] = useLocalStorage<IUser>("user-logged", undefined);
 
   // Função para mudar o estado. Ela precisa ser exportada
   // Quando passamos funções para dentro do contexto é aconselhável utilizar
