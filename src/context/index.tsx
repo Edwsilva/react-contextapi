@@ -1,4 +1,4 @@
-import React, { createContext, type JSX } from "react";
+import React, { createContext, useState, type JSX } from "react";
 
 interface IUser {
   img: string;
@@ -9,6 +9,8 @@ interface IUser {
 // Pois se depois precisar de algo como theme...
 interface IAppContext {
   user?: IUser;
+  // Colocando a função abaixo na interface
+  updateUser: () => void;
 }
 
 // Criando o contexto - Tipando IAppContext
@@ -19,10 +21,17 @@ const AppContext = createContext<IAppContext>({
 
 // Criar o provider para disponibilizar para todo o APP
 const AppProvider = ({ children }: { children: JSX.Element }) => {
+  // Criando a variável que seré enviada para o contexto
+  const [data, setData] = useState<IUser>();
+
+  // Função para mudar o estado. Ela precisa ser exportada
+  function updateUser(user: IUser) {
+    setData(user);
+  }
   // O contexto criado será exportado como um provider
-  // vslur=={{será distribuído no APP}}
+  // valor=={{será distribuído no APP}}
   return (
-    <AppContext.Provider value={{ user: undefined }}>
+    <AppContext.Provider value={{ user: data }}>
       {/* Ele é utilizado para renderizar tudo que estiver
       dentro do privider */}
       {children}
