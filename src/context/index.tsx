@@ -10,13 +10,15 @@ interface IUser {
 interface IAppContext {
   user?: IUser;
   // Colocando a função abaixo na interface
-  updateUser: () => void;
+  updateUser(user: IUser): void;
 }
 
 // Criando o contexto - Tipando IAppContext
 const AppContext = createContext<IAppContext>({
   // Passando o valor inicial do contexto
   user: undefined,
+  // Definindo a função com valor inicial vazio
+  updateUser: () => {},
 });
 
 // Criar o provider para disponibilizar para todo o APP
@@ -31,7 +33,7 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
   // O contexto criado será exportado como um provider
   // valor=={{será distribuído no APP}}
   return (
-    <AppContext.Provider value={{ user: data }}>
+    <AppContext.Provider value={{ user: data, updateUser }}>
       {/* Ele é utilizado para renderizar tudo que estiver
       dentro do privider */}
       {children}
