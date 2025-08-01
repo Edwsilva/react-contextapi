@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState, type JSX } from "react";
+import { useLocalStorage } from "react-use";
 
 interface IUser {
   img: string;
@@ -25,7 +26,9 @@ const AppContext = createContext<IAppContext>({
 // Criar o provider para disponibilizar para todo o APP
 const AppProvider = ({ children }: { children: JSX.Element }) => {
   // Criando a variável que seré enviada para o contexto
-  const [data, setData] = useState<IUser>();
+  // const [data, setData] = useState<IUser>();
+  // Persistindo os dados no browser do usuário
+  const [data, setData] = useLocalStorage<IUser>("user-logged");
 
   // Função para mudar o estado. Ela precisa ser exportada
   // Quando passamos funções para dentro do contexto é aconselhável utilizar
