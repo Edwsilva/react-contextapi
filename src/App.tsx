@@ -1,9 +1,12 @@
 //https://www.youtube.com/watch?v=hYNjpbXe7V0&list=PLgM_vQNu_4CBV5D1uLH1gzvZ3lNYWujC3?
-import { useState, useContext } from "react";
-
+import { useContext, useEffect } from "react";
 import { HomePage } from "./pages/HomePage";
+import { AppContext } from "./context";
 
 function App() {
+  // Criando uma variável que recebe o userContext passando como propriedade o contexto
+  const context = useContext(AppContext);
+
   async function getData() {
     //Simular um delay de 2 segundos em um request
     await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -12,6 +15,13 @@ function App() {
       name: "Edwilson da Silva",
     };
   }
+  // Chama o getData e, após pegar o resultado, atualiza o estado
+  useEffect(() => {
+    getData().then((data) => {
+      context.updateUser(data);
+    });
+  }, []);
+
   return <HomePage />;
 }
 
