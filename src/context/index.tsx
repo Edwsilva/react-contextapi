@@ -1,4 +1,4 @@
-import React, { createContext, useState, type JSX } from "react";
+import React, { createContext, useCallback, useState, type JSX } from "react";
 
 interface IUser {
   img: string;
@@ -28,11 +28,14 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
   const [data, setData] = useState<IUser>();
 
   // Função para mudar o estado. Ela precisa ser exportada
-  function updateUser(user: IUser) {
+  // Quando passamos funções para dentro do contexto é aconselhável utilizar
+  // o useCallback para armazenar o valor da função na memória.
+  const updateUser = useCallback((user: IUser) => {
     console.log("updateUser called ", user);
 
     setData(user);
-  }
+  }, []);
+
   // O contexto criado será exportado como um provider
   // valor=={{será distribuído no APP}}
   return (
