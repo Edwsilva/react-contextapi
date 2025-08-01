@@ -15,7 +15,7 @@ function App() {
       name: "Edwilson da Silva",
     };
   }
-  // Chama o getData e, após pegar o resultado, atualiza o estado
+  // Chama o getData(API) e, após pegar o resultado, atualiza o estado
   useEffect(() => {
     getData().then((data) => {
       context.updateUser(data);
