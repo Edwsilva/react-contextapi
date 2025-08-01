@@ -18,9 +18,12 @@ function App() {
   }
   // Chama o getData(API) e, após pegar o resultado, atualiza o estado
   useEffect(() => {
-    getData().then((data) => {
-      context.updateUser(data);
-    });
+    if (!context.user) {
+      console.log("NO USEEFFCT");
+      getData().then((data) => {
+        context.updateUser(data);
+      });
+    }
   }, []);
 
   return <HomePage />;
